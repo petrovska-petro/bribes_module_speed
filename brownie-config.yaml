@@ -1,0 +1,13 @@
+networks:
+  default: mainnet-fork
+
+autofetch_sources: true
+
+dependencies:
+  - OpenZeppelin/openzeppelin-contracts@4.5.0
+
+
+compiler:
+  solc:
+    remappings:
+      - "@openzeppelin=OpenZeppelin/openzeppelin-contracts@4.5.0"
