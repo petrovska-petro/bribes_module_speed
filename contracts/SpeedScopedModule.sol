@@ -105,7 +105,7 @@ contract SpeedScopedModule {
         external
         onlyExecutors
     {
-        require(allowedTargets[to].allowed, "not-allowed!");
+        require(allowedTargets[to].allowed, "address-not-allowed!");
 
         if (data.length >= 4) {
             require(

@@ -78,6 +78,12 @@ def test_bribes_claim(
         check_balances[symbol] = bal
 
     # trigger claim
+    with reverts("address-not-allowed!"):
+        speed_module.checkTransactionAndExecute(
+            "0x660802fc641b154aba66a62137e71f331b6d787a",
+            "0xa308025d",  # 'claimBribeFromVotium': "0xba083627"
+            {"from": executor},
+        )
     with reverts("function-not-allowed!"):
         speed_module.checkTransactionAndExecute(
             strategy_vested_cvx.address,
@@ -101,7 +107,6 @@ def test_bribes_claim(
     )
 
     # here we know that for ALCX, FXS, STG & USDN balances should increase in the processor
-    print("print", check_balances)
     for symbol in round_20:
         bal = interface.ERC20(bribes_tokens_claimable[symbol]).balanceOf(
             bribes_processor
