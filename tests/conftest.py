@@ -24,7 +24,7 @@ def multi_merkle_stash():
 
 @pytest.fixture
 def bribes_processor():
-    return "0xb2Bf1d48F2C2132913278672e6924efda3385de2"
+    return interface.IBribesProcessor("0xb2Bf1d48F2C2132913278672e6924efda3385de2")
 
 
 @pytest.fixture
@@ -60,6 +60,11 @@ def bribes_tokens_claimable():
 
 
 @pytest.fixture
+def round_20_tokens():
+    return ["ALCX", "FXS", "STG", "USDN"]
+
+
+@pytest.fixture
 def safe():
     return interface.IGnosisSafe("0x86cbD0ce0c087b482782c181dA8d191De18C8275")
 
@@ -81,13 +86,13 @@ def config_module(
     speed_module.addExecutor(executor, {"from": governance})
 
     # allow targets
-    speed_module.setTargetAllowed(bribes_processor, True, {"from": governance})
+    speed_module.setTargetAllowed(bribes_processor.address, True, {"from": governance})
     speed_module.setTargetAllowed(
         strategy_vested_cvx.address, True, {"from": governance}
     )
 
     # scoped down
-    speed_module.setScoped(bribes_processor, True, {"from": governance})
+    speed_module.setScoped(bribes_processor.address, True, {"from": governance})
     speed_module.setScoped(strategy_vested_cvx.address, True, {"from": governance})
 
     # allow signatures
@@ -95,6 +100,14 @@ def config_module(
     speed_module.setAllowedFunction(
         strategy_vested_cvx.address,
         claim_bribes_from_votium,
+        True,
+        {"from": governance},
+    )
+
+    sell_bribes_for_weth = "0x34ea5b15"
+    speed_module.setAllowedFunction(
+        bribes_processor.address,
+        sell_bribes_for_weth,
         True,
         {"from": governance},
     )
