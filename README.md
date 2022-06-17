@@ -8,7 +8,7 @@ The module is capped on two senses, one on the contracts it can point and second
 
 [Miro sketch](https://miro.com/app/board/uXjVOtXEcWc=/)
 
-# Requirements
+# Requirements & Usage
 
 Your ganache instance needs to be run on block < **14961328** to test round 20 (ALCX, FXS, STG & USDN claims).
 
@@ -20,6 +20,8 @@ In your terminal:
 git clone https://github.com/oo-00/Votium.git data/Votium
 
 brownie pm clone OpenZeppelin/openzeppelin-contracts@4.5.0
+
+brownie test
 ```
 
 # Contribute
