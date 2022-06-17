@@ -58,9 +58,7 @@ def _cow_sell(
         "receiver": destination,
         "sellAmount": str(mantissa_sell - fee_amount),
         "buyAmount": str(buy_amount_after_fee),
-        "validTo": str(
-            deadline
-        ),  # tweak deadline cause we're forking on the past, so validTo will end-up being on the past...
+        "validTo": deadline,  # tweak deadline cause we're forking on the past, so validTo will end-up being on the past...
         "appData": web3.keccak(text="speed_scoped_module_test").hex(),
         "feeAmount": str(fee_amount),
         "kind": "sell",
