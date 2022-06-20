@@ -111,3 +111,19 @@ def config_module(
         True,
         {"from": governance},
     )
+
+    swap_weth_for_badger = "0x772a8f36"
+    speed_module.setAllowedFunction(
+        bribes_processor.address,
+        swap_weth_for_badger,
+        True,
+        {"from": governance},
+    )
+
+    swap_weth_for_cvx = "0x118a0252"
+    speed_module.setAllowedFunction(
+        bribes_processor.address,
+        swap_weth_for_cvx,
+        True,
+        {"from": governance},
+    )
