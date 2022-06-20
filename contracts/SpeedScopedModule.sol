@@ -5,13 +5,11 @@ import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 
 import "interfaces/gnosis/IGnosisSafe.sol";
 
-/*
- * @title   SpeedScopedModule
- * @author  Petrovska @ BadgerDAO
- * @dev  Allows whitelisted executors to trigger specific methods in targetted contracts
- * in our case to enable bribes processing quicker
- * Inspired from: https://github.com/gnosis/zodiac-guard-scope
- */
+/// @title   SpeedScopedModule
+/// @author  Petrovska @ BadgerDAO
+/// @dev  Allows whitelisted executors to trigger specific methods in targetted contracts
+/// in our case to enable bribes processing quicker
+/// Inspired from: https://github.com/gnosis/zodiac-guard-scope
 contract SpeedScopedModule {
     using EnumerableSet for EnumerableSet.AddressSet;
 
