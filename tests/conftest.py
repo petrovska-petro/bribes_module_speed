@@ -1,5 +1,5 @@
 import pytest
-from brownie import interface, SpeedScopedModule
+from brownie import web3, interface, SpeedScopedModule
 
 
 @pytest.fixture
@@ -25,6 +25,11 @@ def multi_merkle_stash():
 @pytest.fixture
 def bribes_processor():
     return interface.IBribesProcessor("0xb2Bf1d48F2C2132913278672e6924efda3385de2")
+
+
+@pytest.fixture
+def settlement(bribes_processor):
+    return interface.IGPv2Settlement(bribes_processor.SETTLEMENT())
 
 
 @pytest.fixture
@@ -62,6 +67,14 @@ def bribes_tokens_claimable():
 @pytest.fixture
 def round_20_tokens():
     return ["ALCX", "FXS", "STG", "USDN"]
+
+
+@pytest.fixture
+def confirm_signed():
+    # https://etherscan.io/address/0x9008d19f58aabd9ed0d60971565aa8510560ab41#code#F14#L40
+    return int(
+        web3.solidityKeccak(["string"], ["GPv2Signing.Scheme.PreSign"]).hex(), 16
+    )
 
 
 @pytest.fixture

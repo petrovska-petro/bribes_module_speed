@@ -6,6 +6,8 @@ interface IBribesProcessor {
 
     function KIND_SELL() external view returns (bytes32);
 
+    function SETTLEMENT() external view returns (address);
+
     function sellBribeForWeth(
         CowSwapSeller.Data memory orderData,
         bytes memory orderUid

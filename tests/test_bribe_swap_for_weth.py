@@ -117,9 +117,11 @@ def _get_order_for_processor(
 def test_swap_to_weth(
     speed_module,
     bribes_processor,
+    settlement,
     executor,
     bribes_tokens_claimable,
     round_20_tokens,
+    confirm_signed,
     interface,
 ):
     for symbol in round_20_tokens:
@@ -147,3 +149,6 @@ def test_swap_to_weth(
                 data,
                 {"from": executor},
             )
+
+            # https://etherscan.io/address/0x9008d19f58aabd9ed0d60971565aa8510560ab41#code#F14#L52
+            assert settlement.preSignature(order_uid) == confirm_signed
